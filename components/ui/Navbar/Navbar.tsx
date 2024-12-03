@@ -1,4 +1,5 @@
 import { Darkmode } from "./Darkmode"
+import DropdownListMenu from "./DropdownListMenu"
 import Logo from "./Logo"
 import Search from "./Search"
 
@@ -11,7 +12,7 @@ const Navbar = () => {
         <Search />
         <div className="flex gap-4">
         <Darkmode />
-        <h1>profile</h1>
+        <DropdownListMenu />
         </div>
       </div>
     </nav>
