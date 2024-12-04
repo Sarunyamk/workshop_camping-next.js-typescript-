@@ -14,8 +14,9 @@ type LinkType = {
 }
 export const links: LinkType[] = [
     { href: "/", label: "Home" },
+    { href: "/profile", label: "Profile" },
     { href: "/favorites", label: "Favorites" },
-    { href: "/camps", label: "My camps" }
+    { href: "/camps", label: "My camps" },
 
 ]
 
