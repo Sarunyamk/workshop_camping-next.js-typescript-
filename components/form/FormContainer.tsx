@@ -27,7 +27,6 @@ const FormContainer = (props: formContainerProps) => {
     useEffect(() => {
         if (state.message) {
             toast({
-                title: 'Success',
                 description: state.message
             })
         }

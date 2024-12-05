@@ -1,19 +1,8 @@
 
+import { createProfileAction } from "@/actions/action"
 import { SubmitButton } from "@/components/form/Buttons"
 import FormContainer from "@/components/form/FormContainer"
 import FormInput from "@/components/form/FormInput"
-
-type createProfileActionType = {
-    prevState: any
-    formData: FormData
-}
-
-const createProfileAction = async ({ prevState, formData }: createProfileActionType) => {
-    'use server'
-    //เอาของออกมาจาก name ที่ formdata ที่ส่งมาจาก form
-    return { message: 'Create Profile Success' }
-}
-
 
 
 
