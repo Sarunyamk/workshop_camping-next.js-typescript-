@@ -33,7 +33,11 @@ export const createProfileAction = async (prevState:any, formData: FormData) => 
     // const firstName = formData.get('firstName') as string
     //เอาของออกมาจาก name ที่ formdata ที่ส่งมาจาก form
 try {
-    const user = await getAuthUser()
+    const user = await currentUser()
+
+    if(!user){
+        throw new Error('Please login!!!')
+    }
     const rawData = Object.fromEntries(formData)
     const validateField = validateWithZod(profileSchema,rawData)
     // console.log(validateField,"validateField")
@@ -59,4 +63,27 @@ await client.users.updateUserMetadata(user.id ,{
     return renderError(error)
 } 
 redirect('/')   
+}
+
+
+
+export const createLandmarkAction = async (prevState:any, formData: FormData):Promise<{message:string}> => {
+   
+try {
+    const user = await currentUser()
+
+    if(!user){
+        throw new Error('Please login!!!')
+    }
+    const rawData = Object.fromEntries(formData)
+    // const validateField = validateWithZod(profileSchema,rawData)
+    console.log(rawData,"validateField")
+
+
+    return {message : 'Create Landmark Success'}
+} catch (error) {
+    // console.log(error)
+    return renderError(error)
+} 
+// redirect('/')   
 }

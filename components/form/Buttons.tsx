@@ -20,7 +20,12 @@ export const SubmitButton = (props: SubmitButtonProps) => {
     return (
         <Button className={className} size={size} type="submit" disabled={pending}>
             {
-                pending ? <RefreshCw className="animate-spin" /> : <p>{text}</p>
+                pending
+                    ? <>
+                        <RefreshCw className="animate-spin" />
+                        <span>Please wait....</span>
+                    </>
+                    : <p>{text}</p>
             }
         </Button>
     )
