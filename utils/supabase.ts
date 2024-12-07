@@ -14,7 +14,7 @@ export async function uploadFile(image: File) {
     const newName = `${timeStamp}-${image.name}`
 
     const { data, error } = await supabase.storage
-        .from(bucket_name).upload(newName, image)
+        .from(bucket_name).upload(newName, image, { cacheControl: '3600' })
     if (!data) {
         throw new Error("Error uploading file")
         //         const { data } = supabase.storage.from(bucket_name).getPublicUrl(newName)
