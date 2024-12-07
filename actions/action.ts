@@ -2,10 +2,11 @@
 'use server'
 
 import { imageSchema, landMarkSchema, profileSchema, validateWithZod } from "@/utils/schemas"
-import { clerkClient, currentUser } from "@clerk/nextjs/server"
+import { clerkClient, currentUser, getAuth } from "@clerk/nextjs/server"
 import db from '@/utils/db'
 import { redirect } from "next/navigation"
 import { uploadFile } from "@/utils/supabase"
+import { revalidatePath } from "next/cache"
 
 //เชคว่า User login หรือยัง
 const getAuthUser = async () => {
@@ -110,4 +111,55 @@ export const fetchLandmarks = async () => {
         }
     })
     return landmarks
+}
+
+export const fetchFavoriteId = async ({ landmarkId }: { landmarkId: string }) => {
+
+    const user = await getAuthUser()
+
+    const favorite = await db.favorite.findFirst({
+        where: {
+            landmarkId: landmarkId,
+            profileId: user.id
+        }, select: {
+            id: true
+        }
+    })
+    return favorite?.id || null
+}
+
+export const toggleFavoriteAction = async (prevState: { favoriteId: string | null, landmarkId: string, pathName: string }) => {
+
+    const { favoriteId, landmarkId, pathName } = prevState
+
+    const user = getAuthUser()
+
+    try {
+        // ถ้ากด favorite อยู่แล้ว delete
+        if (favoriteId) {
+            await db.favorite.delete({
+                where: {
+                    id: favoriteId
+                }
+            })
+        }
+        //ถ้าไม่เคยกดจะ create
+        else {
+            await db.favorite.create({
+                data: {
+                    landmarkId,
+                    profileId: (await user).id
+                }
+            })
+        }
+
+        //revalidatePath เอาไปใช้ที่ client เพื่อให้มันอัพเดทข้อมูลที่มีอยู่ใหม่
+        revalidatePath(pathName)
+
+        return { message: favoriteId ? "Remove Favorite Success" : "Add Favorite Success" }
+    } catch (error) {
+        return renderError(error)
+    }
+
+
 }

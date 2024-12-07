@@ -6,21 +6,12 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect } from "react";
 import { actionFunction } from "@/utils/types";
 
-type formContainerProps = {
-    children: React.ReactNode
-    action: actionFunction
-}
-
-
-
-
 const initialState = {
     message: ''
 }
 
-const FormContainer = (props: formContainerProps) => {
+const FormContainer = ({ action, children }: { action: actionFunction, children: React.ReactNode }) => {
     const { toast } = useToast()
-    const { children, action } = props;
     //state เป็นของที่จะ return ออกมาจาก function ถ้าstateค่าถูกเปลี่ยนจะรันใหม่ 
     const [state, formAction] = useActionState(action, initialState)
 

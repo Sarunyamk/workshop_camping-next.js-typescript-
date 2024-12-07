@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { landmarkCardProps } from "@/utils/types"
 import LandmarkRating from "./LandmarkRating"
+import FavoriteToggleButton from "./FavoriteToggleButton"
 
 const LandmarkCard = ({ landmark }: { landmark: landmarkCardProps }) => {
 
@@ -29,6 +30,10 @@ const LandmarkCard = ({ landmark }: { landmark: landmarkCardProps }) => {
                 <div className="flex justify-between items-center">
                     <span className="font-semibold text-sm">THB{price}</span>
                     <p className="font-semibold text-sm">{province}</p>
+                </div>
+
+                <div className="absolute top-3 right-3">
+                    <FavoriteToggleButton landmarkId={id} />
                 </div>
 
             </article>
