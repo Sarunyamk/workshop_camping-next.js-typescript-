@@ -8,6 +8,15 @@ const nextConfig: NextConfig = {
     }
   },
   reactStrictMode: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'wkisjnghkhsvgrpvjxbv.supabase.co'
+      }
+    ]
+
+  }
 };
 
 export default nextConfig;

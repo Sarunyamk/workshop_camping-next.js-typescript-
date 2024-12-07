@@ -99,3 +99,15 @@ export const createLandmarkAction = async (prevState: any, formData: FormData): 
     }
     redirect('/')
 }
+
+
+//fetch data in database
+// เดี๋ยวต้องรับ พารามิดตอร์เพื่อ search ข้อมูล
+export const fetchLandmarks = async () => {
+    const landmarks = await db.landmark.findMany({
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
+    return landmarks
+}
