@@ -3,9 +3,9 @@ import LandmarkLists from './LandmarkLists';
 import { landmarkCardProps } from "@/utils/types";
 import SwiperPicture from "../hero/SwiperPicture";
 
-const LandmarkContainer = async () => {
+const LandmarkContainer = async ({ search }: { search?: string }) => {
 
-    const landmarks: landmarkCardProps[] = await fetchLandmarks()
+    const landmarks: landmarkCardProps[] = await fetchLandmarks({ search })
 
     return (
         <div>

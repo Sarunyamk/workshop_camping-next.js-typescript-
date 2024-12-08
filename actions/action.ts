@@ -104,11 +104,20 @@ export const createLandmarkAction = async (prevState: any, formData: FormData): 
 
 //fetch data in database
 // เดี๋ยวต้องรับ พารามิดตอร์เพื่อ search ข้อมูล
-export const fetchLandmarks = async () => {
+//insensitive ไม่สนตัวเล็กใหญ่
+export const fetchLandmarks = async ({ search = '' }: { search?: string }) => {
     const landmarks = await db.landmark.findMany({
+        where: {
+            OR: [
+                { name: { contains: search, mode: 'insensitive' } },
+                { description: { contains: search, mode: 'insensitive' } },
+            ]
+        },
         orderBy: {
             createdAt: 'desc'
-        }
+        },
+        take: 10
+
     })
     return landmarks
 }
