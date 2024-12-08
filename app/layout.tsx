@@ -5,6 +5,13 @@ import "./globals.css";
 import Providers from "./Providers";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/navbar/Navbar";
+import { Mali } from 'next/font/google'
+
+const mali = Mali({
+  weight: '400',
+  subsets: ['latin', 'thai']
+})
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,7 +39,7 @@ export default function RootLayout({
 
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${mali.className} antialiased`}
         >
           <Providers>
 
