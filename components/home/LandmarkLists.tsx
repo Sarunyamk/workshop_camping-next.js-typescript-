@@ -1,5 +1,6 @@
 import LandmarkCard from "../card/LandmarkCard"
 import { landmarkCardProps } from "../../utils/types"
+import LoadingCard from "../card/LoadingCard"
 
 
 const LandmarkLists = ({ landmarks }: { landmarks: landmarkCardProps[] }) => {
@@ -15,3 +16,4 @@ const LandmarkLists = ({ landmarks }: { landmarks: landmarkCardProps[] }) => {
 }
 
 export default LandmarkLists
+

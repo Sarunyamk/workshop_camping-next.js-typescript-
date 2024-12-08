@@ -1,13 +1,16 @@
 
+import LoadingCard from "@/components/card/LoadingCard"
 import LandmarkContainer from "@/components/home/LandmarkContainer"
-import { Button } from "@/components/ui/button"
-
+import { Suspense } from "react"
+//suspense ระหว่าง โหลดให้แสดงอะไร
 
 
 const page = () => {
   return (
     <div>
-      <LandmarkContainer />
+      <Suspense fallback={<LoadingCard />}>
+        <LandmarkContainer />
+      </Suspense>
     </div>
   )
 }

@@ -163,3 +163,28 @@ export const toggleFavoriteAction = async (prevState: { favoriteId: string | nul
 
 
 }
+
+export const fetchFavoriteUser = async () => {
+    const user = await getAuthUser()
+    const favorites = await db.favorite.findMany({
+        where: {
+            profileId: user.id
+        },
+        select: {
+            landmark: {
+                select: {
+                    id: true,
+                    name: true,
+                    image: true,
+                    description: true,
+                    price: true,
+                    province: true,
+                    lat: true,
+                    lng: true,
+                    category: true,
+                }
+            }
+        }
+    })
+    return favorites.map((favorite) => favorite.landmark)
+}
