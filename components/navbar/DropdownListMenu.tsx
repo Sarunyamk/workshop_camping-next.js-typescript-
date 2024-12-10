@@ -46,7 +46,7 @@ const DropdownListMenu = () => {
                     {
                         links.map((item, index) => {
                             return (
-                                <DropdownMenuItem key={index} >
+                                <DropdownMenuItem key={index} asChild>
                                     <Link href={item.href}>{item.label}</Link>
                                 </DropdownMenuItem>
                             )

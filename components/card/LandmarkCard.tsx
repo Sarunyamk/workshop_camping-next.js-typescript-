@@ -33,10 +33,11 @@ const LandmarkCard = ({ landmark }: { landmark: landmarkCardProps }) => {
                         <p className="font-semibold text-sm">{province}</p>
                     </div>
 
-                    <div className="absolute top-3 right-3">
-                        <FavoriteToggleButton landmarkId={id} />
-                    </div>
                 </Link>
+
+                <div className="absolute top-3 right-3">
+                    <FavoriteToggleButton landmarkId={id} />
+                </div>
             </article>
         </div>
     )
