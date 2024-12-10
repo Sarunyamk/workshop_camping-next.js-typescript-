@@ -6,14 +6,14 @@ import { Suspense } from "react"
 //suspense ระหว่าง โหลดให้แสดงอะไร
 
 
-const page = async ({ searchParams }: { searchParams: { search?: string } }) => {
+const page = async ({ searchParams }: { searchParams: { search?: string, category?: string } }) => {
 
-  const { search } = await searchParams
+  const { search, category } = await searchParams
 
   return (
     <div>
       <Suspense fallback={<LoadingCard />}>
-        <LandmarkContainer search={search} />
+        <LandmarkContainer search={search} category={category} />
       </Suspense>
     </div>
   )

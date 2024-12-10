@@ -25,22 +25,22 @@ const SwiperPicture = ({ landmarks }: { landmarks: landmarkCardProps[] }) => {
                 {
                     landmarks.map((landmark, index) => {
                         return (
-                            <div>
-                                <SwiperSlide key={index} className="group">
-                                    <div className="relative rounded-lg overflow-hidden">
-                                        <img className="h-[600px] w-full object-cover 
-                                            brightness-75 group-hover:brightness-50 duration-300 transition-all"
-                                            src={landmark.image} />
-                                    </div>
 
-                                    <div className="absolute bottom-0 left-0 z-50">
-                                        <div className="col-span-4 mb-4 flex h-full flex-1
+                            <SwiperSlide key={index} className="group">
+                                <div className="relative rounded-lg overflow-hidden">
+                                    <img className="h-[600px] w-full object-cover 
+                                            brightness-75 group-hover:brightness-50 duration-300 transition-all"
+                                        src={landmark.image} />
+                                </div>
+
+                                <div className="absolute bottom-0 left-0 z-50">
+                                    <div className="col-span-4 mb-4 flex h-full flex-1
                                             justify-end px-5 md:mb-4 md:justify-end md:px-10">
-                                            <OtherInfo landmark={landmark} />
-                                        </div>
+                                        <OtherInfo landmark={landmark} />
                                     </div>
-                                </SwiperSlide>
-                            </div>
+                                </div>
+                            </SwiperSlide>
+
                         )
                     })
                 }
