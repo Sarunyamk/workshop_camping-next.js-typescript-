@@ -123,6 +123,17 @@ export const fetchLandmarks = async ({ search = '', category }: { search?: strin
     return landmarks
 }
 
+export const fetchLandmarksHero = async () => {
+    const landmarks = await db.landmark.findMany({
+        orderBy: {
+            createdAt: 'desc'
+        },
+        take: 10
+
+    })
+    return landmarks
+}
+
 export const fetchFavoriteId = async ({ landmarkId }: { landmarkId: string }) => {
 
     const user = await getAuthUser()
@@ -197,4 +208,17 @@ export const fetchFavoriteUser = async () => {
         }
     })
     return favorites.map((favorite) => favorite.landmark)
+}
+
+export const fetchLandmarkDetail = async ({ id }: { id: string }) => {
+
+    return db.landmark.findFirst({
+        where: {
+            id: id
+        },
+        include: {
+            profile: true
+        }
+    })
+
 }

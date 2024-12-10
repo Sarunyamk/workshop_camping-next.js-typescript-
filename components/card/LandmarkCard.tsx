@@ -2,6 +2,7 @@ import Image from "next/image"
 import { landmarkCardProps } from "@/utils/types"
 import LandmarkRating from "./LandmarkRating"
 import FavoriteToggleButton from "./FavoriteToggleButton"
+import Link from "next/link"
 
 const LandmarkCard = ({ landmark }: { landmark: landmarkCardProps }) => {
 
@@ -9,33 +10,33 @@ const LandmarkCard = ({ landmark }: { landmark: landmarkCardProps }) => {
     return (
         <div>
             <article className="group relative">
+                <Link href={`/landmark/${id}`}>
+                    <div className="relative h-80 rounded-lg">
+                        <Image
+                            src={image} alt={name} fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover rounded-lg group-hover:scale-105 transition-transform duration-300" />
 
-                <div className="relative h-80 rounded-lg">
-                    <Image
-                        src={image} alt={name} fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover rounded-lg group-hover:scale-105 transition-transform duration-300" />
+                    </div>
 
-                </div>
+                    <div className="flex items-center justify-between mt-2">
+                        <h3 className="text-sm font-semibold">{name.substring(0, 30)}</h3>
+                        <LandmarkRating />
+                    </div>
 
-                <div className="flex items-center justify-between mt-2">
-                    <h3 className="text-sm font-semibold">{name.substring(0, 30)}</h3>
-                    <LandmarkRating />
-                </div>
+                    <p className="text-sm text-muted-foreground">
+                        {description.substring(0, 40)}
+                    </p>
 
-                <p className="text-sm text-muted-foreground">
-                    {description.substring(0, 40)}
-                </p>
+                    <div className="flex justify-between items-center">
+                        <span className="font-semibold text-sm">THB{price}</span>
+                        <p className="font-semibold text-sm">{province}</p>
+                    </div>
 
-                <div className="flex justify-between items-center">
-                    <span className="font-semibold text-sm">THB{price}</span>
-                    <p className="font-semibold text-sm">{province}</p>
-                </div>
-
-                <div className="absolute top-3 right-3">
-                    <FavoriteToggleButton landmarkId={id} />
-                </div>
-
+                    <div className="absolute top-3 right-3">
+                        <FavoriteToggleButton landmarkId={id} />
+                    </div>
+                </Link>
             </article>
         </div>
     )
