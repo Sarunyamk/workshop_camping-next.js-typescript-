@@ -39,7 +39,7 @@ export default function RootLayout({
 
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${mali.className} antialiased`}
+          className={`${mali.className} antialiased mb-10`}
         >
           <Providers>
 

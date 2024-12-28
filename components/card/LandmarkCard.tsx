@@ -29,7 +29,7 @@ const LandmarkCard = ({ landmark }: { landmark: landmarkCardProps }) => {
                     </p>
 
                     <div className="flex justify-between items-center">
-                        <span className="font-semibold text-sm">THB{price}</span>
+                        <span className="font-semibold text-sm">THB {price}</span>
                         <p className="font-semibold text-sm">{province}</p>
                     </div>
 
